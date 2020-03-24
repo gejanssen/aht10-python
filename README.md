@@ -2,7 +2,7 @@
 
 Originally found on the internet, somewhere, and it had some errors
 
-[![badge](https://raw.githubusercontent.com/gejanssen/aht10_python/master/images/aht10-raspberrypi-zero.jpg)](https://raw.githubusercontent.com/gejanssen/aht10_python/master/images/aht10-raspberrypi-zero.jpg)
+[![badge](https://raw.githubusercontent.com/gejanssen/aht10-python/master/images/aht10-raspberrypi-zero.jpg)](https://raw.githubusercontent.com/gejanssen/aht10-python/master/images/aht10-raspberrypi-zero.jpg)
 
 
 #detect i2c bus for devices
