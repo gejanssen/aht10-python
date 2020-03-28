@@ -5,9 +5,10 @@ Originally found on the internet, somewhere, and it had some errors
 [![badge](https://raw.githubusercontent.com/gejanssen/aht10-python/master/images/aht10-raspberrypi-zero.jpg)](https://raw.githubusercontent.com/gejanssen/aht10-python/master/images/aht10-raspberrypi-zero.jpg)
 
 
-#detect i2c bus for devices
+## detect i2c bus for devices
 
-```gej@rpi-z:~/aht10-python $ i2cdetect -y 1
+```
+gej@rpi-z:~/aht10-python $ i2cdetect -y 1
 Error: Could not open file `/dev/i2c-1': Permission denied
 Run as root?
 gej@rpi-z:~/aht10-python $ 
@@ -18,7 +19,7 @@ whoops, no rights...
 user rights (Adding the current user gej to the i2c group)
 Don't forget to logout and login again after this.
 
-# adding user rights
+## adding user rights
 
 ```
 gej@rpi-z:~/aht10-python $ cat /etc/group | grep i2c
@@ -30,7 +31,8 @@ gej@rpi-z:~/aht10-python $ logout
 ```
 
 
-#detect i2c bus for devices
+## detect i2c bus for devices
+
 
 ```
 gej@rpi-z:~/aht10-python $ i2cdetect -y 1
@@ -48,7 +50,7 @@ gej@rpi-z:~/aht10-python $
 
 yess, we found a device on address 38
 
-Testrun
+## Testrun
 
 ```
 rpi-z:~/aht10-python $ python aht10-python3.py 
@@ -69,7 +71,7 @@ Recent versions use SMBus(1) - i2c bus 1
 
 This is allready changed is this version. Error in this document for future debugging.
 
-Testrun
+## Testrun
 
 ```
 gej@rpi-z:~/aht10-python $ python aht10-python3.py
@@ -81,7 +83,29 @@ gej@rpi-z:~/aht10-python $
 This error happends when the device is not connected or false connected.
 Error: Device not connected (false address)
 
-Testrun 
+## Testrun
+
+```
+gej@rpib42g:~/aht10-python $ sudo python aht10-python3.py 
+Traceback (most recent call last):
+  File "aht10-python3.py", line 23, in <module>
+    data = bus.read_i2c_block_data(0x38,0x00)
+IOError: [Errno 121] Remote I/O error
+gej@rpib42g:~/aht10-python $ 
+```
+
+Hmm, after investigating, it could be a timing issue, 
+uncomment the folowing rule:
+
+```
+time.sleep(1) #wait here to avoid 121 IO Error
+```
+
+Or, for me it was a false connected ground....
+As allways, check your wiring.
+
+## Testrun 
+
 ```
 gej@rpi-z:~/aht10-python $ sudo python aht10-python3.py
 Temperature: 22.0C
@@ -91,3 +115,6 @@ gej@rpi-z:~/aht10-python $
 
 
 Tadaaaaaaa
+
+
+You're the master.....

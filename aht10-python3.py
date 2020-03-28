@@ -11,6 +11,8 @@ import time
 # Get I2C bus
 #bus = smbus.SMBus(0)  # Rev 1 Pi uses 0
 bus = smbus.SMBus(1) # Rev 2 Pi uses 1
+# when you have a 121 IO Error, uncomment the next pause
+# time.sleep(1) #wait here to avoid 121 IO Error
 
 config = [0x08, 0x00]
 bus.write_i2c_block_data(0x38, 0xE1, config)
